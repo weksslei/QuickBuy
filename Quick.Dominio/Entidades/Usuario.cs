@@ -2,7 +2,7 @@
 
 namespace Quick.Dominio.Entidades
 {
-     public class Usuario
+     public class Usuario :Entidade
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -14,6 +14,13 @@ namespace Quick.Dominio.Entidades
         //Sumary
         //    um usuario pode ter um ou muitos pedidos
         //    Sumary
-        public ICollection<Pedido> Pedidos  { get; set; }
+        public virtual ICollection<Pedido> Pedidos  { get; set; }
+
+        public override void Validate()
+        {
+            if (string.IsNullOrEmpty(Email))
+                AdicionaCritica("Email não foi informado!");
+            //throw new System.NotImplementedException();
+        }
     }
 }

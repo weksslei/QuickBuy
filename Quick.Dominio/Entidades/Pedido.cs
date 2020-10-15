@@ -1,15 +1,17 @@
 ﻿using Quick.Dominio.ObjetoDe;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Quick.Dominio.Entidades
 {
-    public class Pedido
+    public class Pedido : Entidade
     {
         public int Id { get; set; }
         public DateTime DataPedido { get; set; }
         public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
         public DateTime DataPrevisaoEntrega { get; set; }
         public string CEP { get; set; }
         public string Estado { get; set; }
@@ -18,10 +20,27 @@ namespace Quick.Dominio.Entidades
         public int NumeroEndereco { get; set; }
 
         public int FormaPagamentoId { get; set; }
-        public FormaPagamento FormaPagamento { get; set; }
+        public virtual FormaPagamento FormaPagamento { get; set; }
 
         /// Pedido deve ter pelo menos um item pedido ou muitos itens de pedidos
 
-        public ICollection<ItemPedido> ItensPedido { get; set; }
+        public virtual ICollection<ItemPedido> ItensPedido { get; set; }
+
+        public override void Validate()
+        {
+            LimparMensagensValidacao();
+
+            if (!ItensPedido.Any())
+                AdicionaCritica(" Critica - Pedido não pode ficar sem item de pedido!");
+
+            if (string.IsNullOrEmpty(CEP))
+                AdicionaCritica("Critica - CEP deve estar preenchido");
+            if (!Estado.Any())
+                AdicionaCritica("Critica - Campo estado é obrigatório!");
+            if (!Cidade.Any())
+                AdicionaCritica("Critica - Campo Cidade é Obrigatório!");
+            if (!EnderecoCompleto.Any())
+                AdicionaCritica("Critica - Favor adicionar um endereço");  
+        }
     }
 }
