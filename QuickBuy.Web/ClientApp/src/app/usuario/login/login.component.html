@@ -20,7 +20,7 @@
         Campo -> Email é de preenchimento obrigatório!
       </div>
       <div *ngIf="email.errors.email">
-        Favor usar um email válido! 
+        Favor usar um email válido!
       </div>
     </div>
     <label for="inputSenha" class="sr-only">Senha</label>
@@ -41,12 +41,26 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
+    <button class="btn btn-primary btn-block" type="submit" (click)="entrar()" [disabled]="ativar_spinner">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
+      Entrar
+    </button>
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
 
-
-
-    <img src="C:\Users\Weksslei Messias\Source\Repos\QuickBuy\QuickBuy.Web\ClientApp\src\assets\img\logo.jpg" />
+    <div>
+      <img src="C:\Users\Weksslei Messias\Source\Repos\QuickBuy\QuickBuy.Web\ClientApp\src\assets\img\logo.jpg" />
+    </div>
   </div>
- 
+
 </form>
 
+<!--<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>
+</button>
+<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+</button>-->  
