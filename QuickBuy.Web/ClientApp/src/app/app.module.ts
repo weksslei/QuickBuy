@@ -19,7 +19,7 @@ import { UsuarioServico } from './servicos/usuario/usuario.servico';
     NavMenuComponent,
     HomeComponent,
     ProdutoComponent,
-    LoginComponent
+    LoginComponent 
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
