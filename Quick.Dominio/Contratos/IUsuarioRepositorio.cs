@@ -8,5 +8,6 @@ namespace Quick.Dominio.Contratos
     public interface IUsuarioRepositorio: IBaseReposotorio<Usuario>
     {
         Usuario Obter(string email, string senha);
+        Usuario Obter(string email);
     }
 }

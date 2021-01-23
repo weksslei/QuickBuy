@@ -18,8 +18,13 @@ namespace Quick.Dominio
         {
             mensagemValidacao.Add(mensagem);
         }
+
+        public string ObertMensagemValidacao()
+        {
+            return string.Join(". ", mensagemValidacao);//Professor colocou ponto na junção das listas eu coloquei apenas espaço
+        }
         public abstract void Validate();
-        protected bool EhValidado
+        public bool EhValido
         {
             get { return !mensagemValidacao.Any(); }
         }
