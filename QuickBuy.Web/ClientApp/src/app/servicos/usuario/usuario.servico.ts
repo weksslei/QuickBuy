@@ -15,6 +15,10 @@ export class UsuarioServico {
     this._usuario = usuario;
   }
 
+  public usuario_administrador(): boolean {
+    return this.usuario_autenticado() && this.usuario.ehAdministrador;
+  }
+
   get usuario(): Usuario {
     let usuario_json = sessionStorage.getItem("usuario-autenticado");
     this._usuario = JSON.parse(usuario_json);

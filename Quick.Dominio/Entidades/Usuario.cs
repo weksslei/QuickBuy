@@ -9,6 +9,8 @@ namespace Quick.Dominio.Entidades
         public string Senha { get; set; }
         public string Nome { get; set; }
         public string SobreNome { get; set; }
+        public bool EhAdministrador { get; set; }
+
 
 
         //Sumary

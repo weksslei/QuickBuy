@@ -1,1 +1,21 @@
-Html da loja para listar os produtos
+<div *ngIf="!produtos">Listando produtos...</div>  
+<div class="container" *ngIf="produtos">
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let p of produtos">
+      <a (click)="abrirProduto(p)" style="cursor:pointer">
+        <div class="card">
+          <img src="../../../../../../arquivos/{{p.nomeArquivo}}" style="width:200px; height:200px;" />
+          <img />
+          <div class="card-body">
+            <div class="card-text">{{p.descricao | truncate:50}}</div>
+            <h5 class="h5">{{p.preco}}</h5>
+
+          </div>
+        </div>
+      </a>
+    </div>
+    
+
+  </div>
+
+</div>

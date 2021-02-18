@@ -42,7 +42,7 @@
     </div>
 
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()" [disabled]="ativar_spinner">
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
       Entrar
     </button>
     <div class="alert alert-danger" *ngIf="mensagem">
@@ -52,8 +52,9 @@
       Novo por aqui? <a [routerLink]='["/novo-usuario"]'>Cadastre-se!</a>
     </div>
 
-      <img src="/../../../../../../ClientApp/src/assets/img/logo.jpg">
-  
+
+    <img src="../../../../../../../../assets/img/logo.jpg" />
+
   </div>
 
 </form>

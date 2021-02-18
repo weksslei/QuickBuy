@@ -38,9 +38,6 @@ export class LoginComponent implements OnInit {
         usuario_json => {
           // essa linha será executada no caso de retorno sem erros
           this.usuarioServico.usuario = usuario_json;
-          
-          //sessionStorage.setItem("usuario-autenticado", "1"); Deixou a linha comentada
-         //  sessionStorage.setItem("email-usuario", usuarioRetorno.email); Professor disse que nao precisava mais dessa informação aula 107 
 
           if (this.returnUrl == null) {
             this.router.navigate(['/']);

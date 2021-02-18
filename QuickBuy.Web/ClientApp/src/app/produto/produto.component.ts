@@ -48,7 +48,11 @@ export class ProdutoComponent implements OnInit {
 
   public cadastrar() {//em caso de operação bem sucedida esse bloco sera executado
     this.ativarEspera();
-    this.produtoServico.cadastrar(this.produto)
+    //if (this.produto.id != null) {
+    //  this.produto.id = null;
+    //  alert("Limpando os campos")
+    //}
+     this.produtoServico.cadastrar(this.produto)
       .subscribe(
         produtoJson => {
           console.log(produtoJson);
