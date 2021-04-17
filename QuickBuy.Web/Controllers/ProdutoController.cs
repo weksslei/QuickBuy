@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Quick.Dominio.Contratos;
 using Quick.Dominio.Entidades;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuickBuy.Web.Controllers
 {
@@ -18,10 +15,10 @@ namespace QuickBuy.Web.Controllers
 
         private readonly IProdutoRepositorio _produtoRepositorio;
         private IHttpContextAccessor _httpContextAccessor;
-        private IHostingEnvironment _hostingEnvironment;
+        private IWebHostEnvironment _hostingEnvironment;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
-                                        IHttpContextAccessor httpContextAccessor, IHostingEnvironment hostingEnvironment)
+                                        IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostingEnvironment)
         {
             _produtoRepositorio = produtoRepositorio;
             _httpContextAccessor = httpContextAccessor;

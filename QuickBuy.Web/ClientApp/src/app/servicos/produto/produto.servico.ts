@@ -24,8 +24,6 @@ export class ProdutoServico implements OnInit {
     this.produtos = [];
   }
 
-
-
   get headers(): HttpHeaders {
     return new HttpHeaders().set('content-type', 'application/json');
   }

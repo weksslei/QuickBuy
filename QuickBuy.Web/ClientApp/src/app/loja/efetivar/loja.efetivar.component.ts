@@ -4,6 +4,8 @@ import { Produto } from '../../modelo/produto';
 import { Pedido } from '../../modelo/pedido';
 import { UsuarioServico } from '../../servicos/usuario/usuario.servico';
 import { ItemPedido } from '../../modelo/itemPedido';
+import { PedidoServico } from '../../servicos/pedido/pedido.servico';
+import { Router } from '@angular/router';
 
 
 
@@ -25,7 +27,7 @@ export class LojaEfetivarComponent implements OnInit {
 
   }
 
-  constructor(private usuarioServico: UsuarioServico) {
+  constructor(private usuarioServico: UsuarioServico, private pedidoServico: PedidoServico, private router: Router) {
 
   }
 
@@ -54,6 +56,20 @@ export class LojaEfetivarComponent implements OnInit {
 
   public efetivarCompra() {
     let pedido = this.criarPedido();
+    this.pedidoServico.efetivarCompra(this.criarPedido()).
+      subscribe(
+        pedidoId => {
+          sessionStorage.setItem("pedidoId", pedidoId.toString());
+          this.produtos = [];
+          this.carrinhoCompras.limparCarrinhoCompras()
+          //redirecionar para outra pagina
+          console.log(pedidoId);
+          this.router.navigate(["/compra-realizada-sucesso"]);
+
+        },
+        e => {
+          console.log(e.error);
+        });
 
 
   }
@@ -61,13 +77,16 @@ export class LojaEfetivarComponent implements OnInit {
   criarPedido(): Pedido {
     let pedido = new Pedido();
     pedido.usuarioId = this.usuarioServico.usuario.id;
-    pedido.cep = "12346546";
+    pedido.cep = "1234654";
     pedido.cidade = "Belo Horizonte";
+    pedido.estado = "Minas Gerais";
     pedido.dataPedido = new Date();
-    pedido.estado = "MG";
     pedido.dataPrevisaEntrega = new Date();
     pedido.formaPagamentoId = 1;
     pedido.numeroEndereco = "12";
+    pedido.enderecoCompleto = "Rua qualquer coisa sei la";
+
+
     this.produtos = this.carrinhoCompras.obterProdutos();
 
     for (let produto of this.produtos) {
@@ -75,8 +94,10 @@ export class LojaEfetivarComponent implements OnInit {
       itemPedido.produtoId = produto.id;
      
       if (!produto.quantidade)
-        produto.quantidade = 1;
-        itemPedido.quantidade = produto.quantidade;
+          produto.quantidade = 1;
+      itemPedido.quantidade = produto.quantidade;
+
+      pedido.itensPedido.push(itemPedido);
     }
 
     return pedido;
